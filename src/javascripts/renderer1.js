@@ -28,7 +28,7 @@ btngithub.addEventListener('click', e => {
     popUp('https://github.com/vedaprakashms')
 })
 btnshare.addEventListener('click', e => {
-    popUp('https://github.com/vedaprakashms')
+    popUp('https://github.com/vedaprakashms/PEDS_USPTO')
 })
 btntwitter.addEventListener('click', e => {
     popUp('https://twitter.com/vedms')
