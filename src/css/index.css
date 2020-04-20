@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css?family=Monda|Roboto|Special+Elite&display=swap');
+.btn:hover {
+    opacity: 1;
+    color: #00cbfd;
+    ;
+}
+
+.dashed {
+    border-top: 3px dashed rgba(5, 14, 41, 0.582);
+    padding: 2px;
+}
+
+.button {
+    background-color: rgba(1, 104, 87, 0.479);
+    /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;
+    font-size: 16px;
+    border: 2px solid rgb(0, 9, 58);
+}
+
+.label-fontsize {
+    font-size: 0.8em;
+}
+
+.column-layout {
+    max-width: 98%;
+    margin: 5px auto 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    text-align: justify;
+}
+
+.column-width-max {
+    flex: 2;
+    text-align: center;
+}
+
+.column-width-max9 {
+    flex: 9;
+    text-align: center;
+}
+
+.column-width-min {
+    flex: 1;
+    text-align: center;
+}
+
+.column-width-tabel-1 {
+    width: 18%;
+    align-items: flex-start;
+    text-align: initial;
+}
+
+.column-width-tabel-2 {
+    width: 32%;
+    align-items: flex-start;
+    text-align: initial;
+}
+
+body {
+    position: relative;
+    min-height: 97vh;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: gray;
+}
+
+div {
+    font-family: 'Roboto', "Segoe UI";
+    font-size: 1.5rem;
+    color: rgb(0, 9, 58);
+    text-align: Initial;
+    padding: 0%;
+    border: 0%;
+    margin: 0%;
+}
+
+header {
+    font-family: 'Special Elite', cursive;
+    font-size: 30px;
+    color: rgb(0, 9, 58);
+    text-align: center;
+    align-content: center;
+    vertical-align: middle;
+}
+
+footer {
+    font-size: 0.75em;
+    color: #fff;
+    padding: 2px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (max-width: 950px) {
+    .column-layout>.column-width-tabel-1 {
+        font-size: 0.55em;
+    }
+    .column-layout>.column-width-tabel-2 {
+        font-size: 0.5em;
+    }
+}
+
+@media (min-width: 951px) {
+    .column-layout>.column-width-tabel-1 {
+        font-size: 0.75em;
+    }
+    .column-layout>.column-width-tabel-2 {
+        font-size: 0.7em;
+        text-align: center;
+    }
+}
