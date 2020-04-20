@@ -80,6 +80,10 @@
     transform: rotate(45deg);
 }
 
+.red {
+    color: red;
+}
+
 body {
     position: relative;
     background-color: #c7f4ffa2;

@@ -1,6 +1,17 @@
-const { ipcRenderer } = require('electron');
+const path = require('path');
+const { ipcRenderer, shell } = require('electron');
 const btn_close = document.getElementById('close_tab');
-var check_obj = {}
+
+var PopUpObj;
+
+
+function popUp(url) {
+
+
+    PopUpObj = shell.openExternal(url);
+
+
+}
 
 btn_close.addEventListener('click', e => {
     console.log('ping to close second window')

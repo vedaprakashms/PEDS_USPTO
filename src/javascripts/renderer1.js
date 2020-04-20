@@ -1,4 +1,5 @@
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, shell } = require('electron');
+const path = require('path');
 const btn_file = document.getElementById('open_filedg');
 const btn_select = document.getElementById('select_check');
 const btngithub = document.getElementById('ved_github');
@@ -9,7 +10,7 @@ const btnlic = document.getElementById('ved_license');
 const btnCR = document.getElementById('ved_copyright');
 const btnshare = document.getElementById('ved_share');
 const btnclsmain = document.getElementById('close_tab_main');
-ved_share
+const btntmplt = document.getElementById('open_template');
 
 var PopUpObj;
 
@@ -17,12 +18,13 @@ var PopUpObj;
 function popUp(url) {
 
 
-    PopUpObj = window.open(url);
-
-
-    PopUpObj.blur();
+    PopUpObj = shell.openExternal(url);
 
 }
+
+btntmplt.addEventListener('click', e => {
+    shell.openExternal(path.join(path.dirname(__dirname), 'template', 'Input.xltx'))
+})
 
 btngithub.addEventListener('click', e => {
     popUp('https://github.com/vedaprakashms')
@@ -40,10 +42,11 @@ btnlinkdin.addEventListener('click', e => {
     popUp('https://www.linkedin.com/in/vedms')
 })
 btnCR.addEventListener('click', e => {
-    popUp('file:///C:/Users/vedap/Documents/Projects/electron/PEDS_USPTO/src/license/SWlicense.txt')
+
+    shell.openExternal(path.join(path.dirname(__dirname), 'license', 'SWlicense.txt'))
 })
 btnlic.addEventListener('click', e => {
-    popUp('file:///C:/Users/vedap/Documents/Projects/electron/PEDS_USPTO/src/license/3dpartylicense.txt')
+    shell.openExternal(path.join(path.dirname(__dirname), 'license', '3dpartylicense.txt'))
 })
 
 btn_file.addEventListener('click', e => {

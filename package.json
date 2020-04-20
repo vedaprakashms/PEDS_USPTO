@@ -46,7 +46,8 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
-    "electron-window-state": "^5.0.3"
+    "electron-window-state": "^5.0.3",
+    "exceljs": "^3.8.2"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.50",

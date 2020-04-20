@@ -5,6 +5,10 @@
     ;
 }
 
+.red {
+    color: red;
+}
+
 .dashed {
     border-top: 3px dashed rgba(5, 14, 41, 0.582);
     padding: 2px;
