@@ -10,7 +10,8 @@ const btnlic = document.getElementById('ved_license');
 const btnCR = document.getElementById('ved_copyright');
 const btnshare = document.getElementById('ved_share');
 const btnclsmain = document.getElementById('close_tab_main');
-ved_share
+const btn_open_tmplt = document.getElementById('open_tmplt');
+
 
 
 
@@ -22,6 +23,11 @@ function popUp(url) {
 
 }
 
+btn_open_tmplt.addEventListener('click', e => {
+
+    // code to make a template file needs to be placed here.
+
+})
 btngithub.addEventListener('click', e => {
     popUp('https://github.com/vedaprakashms')
 })
