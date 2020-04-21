@@ -1,4 +1,5 @@
 const { ipcRenderer, shell } = require('electron');
+const path = require('path');
 const btn_file = document.getElementById('open_filedg');
 const btn_select = document.getElementById('select_check');
 const btngithub = document.getElementById('ved_github');
@@ -38,10 +39,10 @@ btnlinkdin.addEventListener('click', e => {
     popUp('https://www.linkedin.com/in/vedms')
 })
 btnCR.addEventListener('click', e => {
-    popUp('file:///C:/Users/vedap/Documents/Projects/electron/PEDS_USPTO/src/license/SWlicense.txt')
+    popUp(path.join(path.dirname(__dirname), "license", 'SWlicense.txt'))
 })
 btnlic.addEventListener('click', e => {
-    popUp('file:///C:/Users/vedap/Documents/Projects/electron/PEDS_USPTO/src/license/3dpartylicense.txt')
+    popUp(path.join(path.dirname(__dirname), "license", '3dpartylicense.txt'))
 })
 
 btn_file.addEventListener('click', e => {
