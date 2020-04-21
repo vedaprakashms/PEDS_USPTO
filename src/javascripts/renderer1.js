@@ -12,13 +12,12 @@ const btnshare = document.getElementById('ved_share');
 const btnclsmain = document.getElementById('close_tab_main');
 ved_share
 
-var PopUpObj;
 
 
 function popUp(url) {
 
 
-    PopUpObj = shell.openExternal(url);
+    shell.openExternal(url);
 
 
 }
