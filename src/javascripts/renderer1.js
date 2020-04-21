@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, shell } = require('electron');
 const btn_file = document.getElementById('open_filedg');
 const btn_select = document.getElementById('select_check');
 const btngithub = document.getElementById('ved_github');
@@ -17,10 +17,8 @@ var PopUpObj;
 function popUp(url) {
 
 
-    PopUpObj = window.open(url);
+    PopUpObj = shell.openExternal(url);
 
-
-    PopUpObj.blur();
 
 }
 
