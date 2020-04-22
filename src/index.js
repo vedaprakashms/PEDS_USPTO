@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, ipcMain, dialog, Notification, shell } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, dialog, Notification, shell, clipboard } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const path = require('path');
 const Excel = require('exceljs');
@@ -46,7 +46,7 @@ const createWindow = () => {
     mainWindow.loadFile(path.join(__dirname, 'html', 'index.html'));
 
     // Open the DevTools.
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
     mainWindow.maximize();
 
     //setapplication menu
@@ -89,6 +89,7 @@ ipcMain.on('file-open-msg', (e, a) => {
     dialog.showOpenDialog({
         title: "Select excel File",
         properties: ['openFile'],
+        defaultPath: clipboard.readText(),
         filters: [
             { name: 'Excel', extensions: ['xls', 'xlsx', 'xlsm'] },
             { name: 'Custom File Type', extensions: ['as'] },
@@ -142,12 +143,4 @@ ipcMain.on('gen_template', (e, a) => {
     // path to the excel template generation java script
     require('./javascripts/gen_excel_template');
     e.reply('tmplt-notification', path.join(app.getPath('desktop'), 'PEDS_Generate_template.xlsx'));
-    mynotify = new Notification({
-        title: "Template Generated",
-        body: path.join(app.getPath('desktop'), 'PEDS_Generate_template.xlsx'),
-        icon: path.join(__dirname, 'img', 'excel.png')
-    }).show();
-
-
-
 })

@@ -1,6 +1,7 @@
 const Excel = require('exceljs');
 const path = require('path');
-const { app, shell, Notification } = require('electron');
+const { app } = require('electron');
+
 const workbook = new Excel.Workbook();
 const worksheet = workbook.addWorksheet('ExampleSheet');
 
@@ -9,10 +10,7 @@ worksheet.columns = [
     { header: 'Application Number', key: 'package_name', width: 30 }
 ];
 
-// Add row using key mapping to columns
-worksheet.addRow({
-    package_name: 123456789
-});
+
 
 worksheet.getCell('A1').fill = {
     type: 'pattern',
@@ -38,4 +36,3 @@ workbook
     .catch((err) => {
         console.log("err", err);
     });
-//shell.openExternal(path.join(app.getPath('desktop'), 'PEDS_Generate_template.xlsx'))

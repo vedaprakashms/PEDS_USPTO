@@ -1,4 +1,5 @@
-const { app, ipcRenderer, shell, Notification } = require('electron');
+const { clipboard, remote, ipcRenderer, shell, } = require('electron');
+const { app } = remote.app
 const path = require('path');
 const btn_file = document.getElementById('open_filedg');
 const btn_select = document.getElementById('select_check');
@@ -73,5 +74,25 @@ ipcRenderer.on('file-open-msg-reply', (event, arg) => {
 ipcRenderer.on('tmplt-notification', (event, arg) => {
     console.log(arg) // prints "pong"
     document.getElementById('file_path').innerHTML = arg
+    noty = new Notification('Template Generated', {
+
+        title: 'Template Generated',
+        body: arg + "\n Path Copied",
+        icon: path.join('../', 'img', 'excel.png')
+    })
+
+    noty.onclick = function() {
+        console.log('Trying to open the generated file')
+        shell.openExternal(arg)
+            // clipboard.writeText('Example String', 'selection')
+            // console.log(clipboard.readText('selection'))
+    }
+
+    noty.onshow = () => {
+        clipboard.writeText(arg, 'selection')
+        console.log(clipboard.readText('selection'))
+    }
+
+
 
 })
