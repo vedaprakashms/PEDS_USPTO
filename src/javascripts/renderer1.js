@@ -1,4 +1,4 @@
-const { ipcRenderer, shell } = require('electron');
+const { app, ipcRenderer, shell, Notification } = require('electron');
 const path = require('path');
 const btn_file = document.getElementById('open_filedg');
 const btn_select = document.getElementById('select_check');
@@ -24,8 +24,9 @@ function popUp(url) {
 }
 
 btn_open_tmplt.addEventListener('click', e => {
-
-    // code to make a template file needs to be placed here.
+    console.log('trying too open excel')
+        // code to make a template file needs to be placed here.
+    ipcRenderer.send('gen_template', 'ping to generate template')
 
 })
 btngithub.addEventListener('click', e => {
@@ -69,7 +70,8 @@ ipcRenderer.on('file-open-msg-reply', (event, arg) => {
     document.getElementById('file_path').innerHTML = arg
 })
 
-ipcRenderer.on('file-open-msg-reply', (event, arg) => {
+ipcRenderer.on('tmplt-notification', (event, arg) => {
     console.log(arg) // prints "pong"
     document.getElementById('file_path').innerHTML = arg
+
 })

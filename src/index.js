@@ -1,12 +1,14 @@
-const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, dialog, Notification, shell } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const path = require('path');
+const Excel = require('exceljs');
 require('electron-reload')(__dirname, {
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
     hardResetMethod: 'exit'
 });
 
-let mainWindow, secondwindow
+let mainWindow, secondwindow, mynotify
+
 
 //main menu template
 
@@ -104,6 +106,7 @@ ipcMain.on('file-open-msg', (e, a) => {
 });
 
 ipcMain.on('open-second-window', (e, a) => {
+
     secondwindow = new BrowserWindow({
 
         width: 600,
@@ -127,12 +130,24 @@ ipcMain.on('open-second-window', (e, a) => {
 ipcMain.on('close-second-window', (e, a) => {
     secondwindow.close();
     console.log(a);
-
 })
 
 ipcMain.on('Close-main-window', (e, a) => {
     console.log(a);
     mainWindow.close();
+})
+
+ipcMain.on('gen_template', (e, a) => {
+    console.log(a);
+    // path to the excel template generation java script
+    require('./javascripts/gen_excel_template');
+    e.reply('tmplt-notification', path.join(app.getPath('desktop'), 'PEDS_Generate_template.xlsx'));
+    mynotify = new Notification({
+        title: "Template Generated",
+        body: path.join(app.getPath('desktop'), 'PEDS_Generate_template.xlsx'),
+        icon: path.join(__dirname, 'img', 'excel.png')
+    }).show();
+
 
 
 })
