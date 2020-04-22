@@ -2,10 +2,10 @@ const { app, BrowserWindow, Menu, ipcMain, dialog, Notification, shell, clipboar
 const windowStateKeeper = require('electron-window-state');
 const path = require('path');
 const Excel = require('exceljs');
-require('electron-reload')(__dirname, {
-    electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
-    hardResetMethod: 'exit'
-});
+// require('electron-reload')(__dirname, {
+//     electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+//     hardResetMethod: 'exit'
+// });
 
 let mainWindow, secondwindow, mynotify
 
