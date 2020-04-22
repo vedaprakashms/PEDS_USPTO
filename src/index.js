@@ -34,7 +34,7 @@ const createWindow = () => {
         height: mainWindowState.height,
         minWidth: 900,
         minHeight: 700,
-        icon: "./icon/icon.png",
+        icon: './icon/icon.png',
         webPreferences: {
             nodeIntegration: true
         },
