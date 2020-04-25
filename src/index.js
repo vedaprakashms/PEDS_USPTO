@@ -1,12 +1,16 @@
-const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, dialog, Notification, shell, clipboard, Tray } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const path = require('path');
-require('electron-reload')(__dirname, {
-    electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
-    hardResetMethod: 'exit'
-});
+const Excel = require('exceljs');
+const k = require('./javascripts/gen_excel_template');
+require('update-electron-app')();
 
-let mainWindow, secondwindow
+// require('electron-reload')(__dirname, {
+//     electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+//     hardResetMethod: 'exit'
+// });
+
+let mainWindow, secondwindow, mynotify
 
 //main menu template
 
@@ -18,6 +22,8 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 }
 
 const createWindow = () => {
+
+
 
     // window state manage
 
@@ -35,10 +41,11 @@ const createWindow = () => {
         minWidth: 900,
         minHeight: 700,
         icon: './icon/icon.png',
+
         webPreferences: {
             nodeIntegration: true
         },
-        frame: false
+        frame: true
     });
 
     // and load the index.html of the app.
@@ -46,7 +53,7 @@ const createWindow = () => {
 
     // Open the DevTools.
     //mainWindow.webContents.openDevTools();
-    mainWindow.maximize();
+    //mainWindow.maximize();
 
     //setapplication menu
     Menu.setApplicationMenu(mainMenu);
@@ -88,6 +95,7 @@ ipcMain.on('file-open-msg', (e, a) => {
     dialog.showOpenDialog({
         title: "Select excel File",
         properties: ['openFile'],
+        defaultPath: clipboard.readText(),
         filters: [
             { name: 'Excel', extensions: ['xls', 'xlsx', 'xlsm'] },
             { name: 'Custom File Type', extensions: ['as'] },
@@ -105,6 +113,7 @@ ipcMain.on('file-open-msg', (e, a) => {
 });
 
 ipcMain.on('open-second-window', (e, a) => {
+
     secondwindow = new BrowserWindow({
 
         width: 600,
@@ -128,12 +137,17 @@ ipcMain.on('open-second-window', (e, a) => {
 ipcMain.on('close-second-window', (e, a) => {
     secondwindow.close();
     console.log(a);
-
 })
 
 ipcMain.on('Close-main-window', (e, a) => {
     console.log(a);
     mainWindow.close();
+})
 
-
+ipcMain.on('gen_template', (e, a) => {
+    console.log(a);
+    // path to the excel template generation java script
+    //require('./javascripts/gen_excel_template');
+    k.xl_tmplate()
+    e.reply('tmplt-notification', path.join(app.getPath('desktop'), 'PEDS_Generate_template.xlsx'));
 })

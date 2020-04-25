@@ -3,6 +3,7 @@
     "productName": "peds_uspto",
     "version": "1.0.0",
     "description": "My Electron application description",
+    "repository": "https://github.com/vedaprakashms/PEDS_USPTO",
     "main": "src/index.js",
     "scripts": {
         "start": "electron-forge start",
@@ -46,7 +47,8 @@
     "dependencies": {
         "electron-squirrel-startup": "^1.0.0",
         "electron-window-state": "^5.0.3",
-        "exceljs": "^3.8.2"
+        "exceljs": "^3.9.0",
+        "update-electron-app": "^1.5.0"
     },
     "devDependencies": {
         "@electron-forge/cli": "^6.0.0-beta.50",
