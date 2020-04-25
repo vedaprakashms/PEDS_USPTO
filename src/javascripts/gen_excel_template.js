@@ -1,6 +1,8 @@
 const Excel = require('exceljs');
 const path = require('path');
 const { app } = require('electron');
+const fs = require('fs');
+var dir = path.join(app.getPath('desktop'), 'PEDS_Templates');
 module.exports.xl_tmplate = function() {
     const workbook = new Excel.Workbook();
     workbook.creator = 'PEDS_USPTO Application';
@@ -29,14 +31,25 @@ module.exports.xl_tmplate = function() {
 
     // Add rows as Array values
 
+    d = Date().toString()
+    d = d.substring(4, 25)
+    d = d.replace(/\s/g, '')
+    d = d.replace(/:/g, '')
+
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+    }
+
     // save workbook to disk
     workbook
         .xlsx
-        .writeFile(path.join(app.getPath('desktop'), 'PEDS_Generate_template.xlsx'))
+        .writeFile(path.join(dir, 'PEDS_tmplt_' + d + '.xlsx'))
         .then(() => {
             console.log("saved");
         })
         .catch((err) => {
             console.log("err", err);
         });
+
+    return path.join(dir, 'PEDS_tmplt_' + d + '.xlsx')
 }

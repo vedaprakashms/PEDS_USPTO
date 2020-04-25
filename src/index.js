@@ -149,8 +149,8 @@ ipcMain.on('gen_template', (e, a) => {
     console.log(a);
     // path to the excel template generation java script
     //require('./javascripts/gen_excel_template');
-    gen_excel_template.xl_tmplate();
-    e.reply('tmplt-notification', path.join(app.getPath('desktop'), 'PEDS_Generate_template.xlsx'));
+    temp_path = gen_excel_template.xl_tmplate();
+    e.reply('tmplt-notification', temp_path);
 })
 ipcMain.on('Start_work', (e, a) => {
     console.log(a);

@@ -92,7 +92,27 @@ module.exports.barexl = function() {
     ];
     AssignmentSheet.columns = [
         { header: 'Application Number', key: 'Appl_no', width: 30 },
-        { header: 'Data', key: 'data', width: 20 }
+        { header: 'Assignment1', key: 'Assignment1', width: 20 },
+        { header: 'Assignment2', key: 'Assignment2', width: 20 },
+        { header: 'Assignment3', key: 'Assignment3', width: 20 },
+        { header: 'Assignment4', key: 'Assignment4', width: 20 },
+        { header: 'Assignment5', key: 'Assignment5', width: 20 },
+        { header: 'Assignment6', key: 'Assignment6', width: 20 },
+        { header: 'Assignment7', key: 'Assignment7', width: 20 },
+        { header: 'Assignment8', key: 'Assignment8', width: 20 },
+        { header: 'Assignment9', key: 'Assignment9', width: 20 },
+        { header: 'Assignment10', key: 'Assignment10', width: 20 },
+        { header: 'Assignment11', key: 'Assignment11', width: 20 },
+        { header: 'Assignment12', key: 'Assignment12', width: 20 },
+        { header: 'Assignment13', key: 'Assignment13', width: 20 },
+        { header: 'Assignment14', key: 'Assignment14', width: 20 },
+        { header: 'Assignment15', key: 'Assignment15', width: 20 },
+        { header: 'Assignment16', key: 'Assignment16', width: 20 },
+        { header: 'Assignment17', key: 'Assignment17', width: 20 },
+        { header: 'Assignment18', key: 'Assignment18', width: 20 },
+        { header: 'Assignment19', key: 'Assignment19', width: 20 },
+        { header: 'Assignment20', key: 'Assignment20', width: 20 },
+        { header: 'Assignment', key: 'Assignment21', width: 20 },
 
     ];
     ForeignPrioritySheet.columns = [
@@ -130,7 +150,7 @@ module.exports.barexl = function() {
 
 
     d = Date().toString()
-    d = d.substring(0, 25)
+    d = d.substring(4, 25)
     d = d.replace(/\s/g, '')
     d = d.replace(/:/g, '')
     console.log(d)
@@ -140,7 +160,7 @@ module.exports.barexl = function() {
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
     }
-    workbook.xlsx.writeFile(path.join(app.getPath('desktop'), 'PEDS_Results', 'PEDS' + d + '.xlsx'))
-    console.log("created bare excel file at: " + path.join(app.getPath('desktop'), 'PEDS_Results', 'PEDS' + d + '.xlsx'))
-    return path.join(app.getPath('desktop'), 'PEDS_Results', 'PEDS' + d + '.xlsx')
+    workbook.xlsx.writeFile(path.join(app.getPath('desktop'), 'PEDS_Results', 'PEDS_' + d + '.xlsx'))
+    console.log("created bare excel file at: " + path.join(app.getPath('desktop'), 'PEDS_Results', 'PEDS_' + d + '.xlsx'))
+    return path.join(app.getPath('desktop'), 'PEDS_Results', 'PEDS_' + d + '.xlsx')
 }
