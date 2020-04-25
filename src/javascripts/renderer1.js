@@ -51,10 +51,10 @@ btnlic.addEventListener('click', e => {
 btn_execute_file.addEventListener('click', e => {
     console.log('Ping to start work')
         // code to make a template file needs to be placed here.
-    dialog.showMessageBoxSync({
-        title: "Place holder for execution",
-        message: "Place holder to start execution of program\nWork in progress, the functionality will bee added soon!!!"
-    })
+        // dialog.showMessageBoxSync({
+        //     title: "Place holder for execution",
+        //     message: "Place holder to start execution of program\nWork in progress, the functionality will bee added soon!!!"
+        // })
     console.log(dialog)
     ipcRenderer.send('Start_work', 'ping to start work')
 

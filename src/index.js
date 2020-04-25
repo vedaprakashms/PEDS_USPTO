@@ -2,13 +2,14 @@ const { app, BrowserWindow, Menu, ipcMain, dialog, Notification, shell, clipboar
 const windowStateKeeper = require('electron-window-state');
 const path = require('path');
 const Excel = require('exceljs');
-const k = require('./javascripts/gen_excel_template');
+const gen_excel_template = require('./javascripts/gen_excel_template');
+const create_bare_Excelsheet = require('./javascripts/create_bare_Excelsheet');
 require('update-electron-app')();
 
-// require('electron-reload')(__dirname, {
-//     electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
-//     hardResetMethod: 'exit'
-// });
+require('electron-reload')(__dirname, {
+    electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+    hardResetMethod: 'exit'
+});
 
 let mainWindow, secondwindow, mynotify
 
@@ -40,7 +41,7 @@ const createWindow = () => {
         height: mainWindowState.height,
         minWidth: 900,
         minHeight: 700,
-        icon: './img/excel.png',
+        icon: 'img/snake.ico',
 
         webPreferences: {
             nodeIntegration: true
@@ -148,6 +149,14 @@ ipcMain.on('gen_template', (e, a) => {
     console.log(a);
     // path to the excel template generation java script
     //require('./javascripts/gen_excel_template');
-    k.xl_tmplate()
+    gen_excel_template.xl_tmplate();
     e.reply('tmplt-notification', path.join(app.getPath('desktop'), 'PEDS_Generate_template.xlsx'));
+})
+ipcMain.on('Start_work', (e, a) => {
+    console.log(a);
+    // path to the excel template generation java script
+    //require('./javascripts/gen_excel_template');
+    bare_xl_file_path = create_bare_Excelsheet.barexl();
+    // bare_xl_file_path denotes the template file
+    e.reply('tmplt-notification', bare_xl_file_path);
 })

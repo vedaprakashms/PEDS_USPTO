@@ -3,7 +3,10 @@ const path = require('path');
 const { app } = require('electron');
 module.exports.xl_tmplate = function() {
     const workbook = new Excel.Workbook();
-    const worksheet = workbook.addWorksheet('ExampleSheet');
+    workbook.creator = 'PEDS_USPTO Application';
+    workbook.lastModifiedBy = 'PEDS_USPTO Application';
+    workbook.created = new Date();
+    const worksheet = workbook.addWorksheet('Application num');
 
     // add column headers
     worksheet.columns = [
