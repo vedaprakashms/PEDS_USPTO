@@ -40,7 +40,7 @@ const createWindow = () => {
         height: mainWindowState.height,
         minWidth: 900,
         minHeight: 700,
-        icon: './img/excel.png',
+        icon: './icon/icon.png',
 
         webPreferences: {
             nodeIntegration: true
