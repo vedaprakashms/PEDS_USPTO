@@ -1,17 +1,16 @@
-const { app, BrowserWindow, Menu, ipcMain, dialog, Notification, shell, clipboard, Tray } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, dialog, clipboard } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const path = require('path');
-const Excel = require('exceljs');
 const gen_excel_template = require('./javascripts/gen_excel_template');
 const create_bare_Excelsheet = require('./javascripts/create_bare_Excelsheet');
 require('update-electron-app')();
 
-// require('electron-reload')(__dirname, {
-//     electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
-//     hardResetMethod: 'exit'
-// });
+require('electron-reload')(__dirname, {
+    electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+    hardResetMethod: 'exit'
+});
 
-let mainWindow, secondwindow, mynotify
+let mainWindow, secondwindow
 
 //main menu template
 
@@ -41,7 +40,7 @@ const createWindow = () => {
         height: mainWindowState.height,
         minWidth: 900,
         minHeight: 700,
-        icon: 'img/snake.ico',
+        icon: path.join(__dirname, 'icon', 'trident.png'),
 
         webPreferences: {
             nodeIntegration: true
@@ -54,7 +53,7 @@ const createWindow = () => {
 
     // Open the DevTools.
     //mainWindow.webContents.openDevTools();
-    //mainWindow.maximize();
+    mainWindow.maximize();
 
     //setapplication menu
     Menu.setApplicationMenu(mainMenu);

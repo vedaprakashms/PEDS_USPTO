@@ -21,7 +21,7 @@
     "config": {
         "forge": {
             "packagerConfig": {
-                "icon": "scr/img/snake.ico"
+                "icon": "src/icon/trident.png"
             },
             "makers": [{
                     "name": "@electron-forge/maker-squirrel",

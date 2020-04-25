@@ -24,7 +24,7 @@ module.exports.barexl = function() {
 
     workbook.eachSheet(function(worksheet, sheetId) {
         // ...
-        console.log(worksheet.name + " - sheet id " + sheetId)
+        //console.log(worksheet.name + " - sheet id " + sheetId)
         worksheet.views = [
             { state: 'frozen', xSplit: 1, ySplit: 1, topLeftCell: 'B2', activeCell: 'A1' }
         ];
@@ -126,7 +126,7 @@ module.exports.barexl = function() {
     workbook.eachSheet(function(worksheet, sheetId) {
         // ...
         worksheet.getRow(1).eachCell(function(cell, colNumber) {
-            console.log('Cell ' + colNumber + ' = ' + cell.value);
+            //console.log('Cell ' + colNumber + ' = ' + cell.value);
             cell.fill = {
                 type: 'pattern',
                 pattern: 'solid',
@@ -149,18 +149,18 @@ module.exports.barexl = function() {
     });
 
 
-    d = Date().toString()
-    d = d.substring(4, 25)
-    d = d.replace(/\s/g, '')
-    d = d.replace(/:/g, '')
-    console.log(d)
-        // workbook.xlsx.writeFile(path.join(app.getPath('desktop'), 'PEDS_USPTO_Result.xlsx'), {
-        //     filename: ""
-        // });
+    d = Date().toString();
+    d = d.substring(4, 25);
+    d = d.replace(/\s/g, '');
+    d = d.replace(/:/g, '');
+    //console.log(d)
+    // workbook.xlsx.writeFile(path.join(app.getPath('desktop'), 'PEDS_USPTO_Result.xlsx'), {
+    //     filename: ""
+    // });
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
     }
-    workbook.xlsx.writeFile(path.join(app.getPath('desktop'), 'PEDS_Results', 'PEDS_' + d + '.xlsx'))
-    console.log("created bare excel file at: " + path.join(app.getPath('desktop'), 'PEDS_Results', 'PEDS_' + d + '.xlsx'))
-    return path.join(app.getPath('desktop'), 'PEDS_Results', 'PEDS_' + d + '.xlsx')
+    workbook.xlsx.writeFile(path.join(app.getPath('desktop'), 'PEDS_Results', 'PEDS_' + d + '.xlsx'));
+    //console.log("created bare excel file at: " + path.join(app.getPath('desktop'), 'PEDS_Results', 'PEDS_' + d + '.xlsx'))
+    return path.join(app.getPath('desktop'), 'PEDS_Results', 'PEDS_' + d + '.xlsx');
 }

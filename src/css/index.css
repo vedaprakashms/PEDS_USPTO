@@ -18,6 +18,11 @@
     padding: 2px;
 }
 
+.groove {
+    border-top: 3px groove rgba(5, 14, 41, 0.582);
+    padding: 2px;
+}
+
 .button {
     background-color: rgba(1, 104, 87, 0.479);
     /* Green */
