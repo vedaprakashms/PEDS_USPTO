@@ -6,10 +6,10 @@ const gen_excel_template = require('./javascripts/gen_excel_template');
 const create_bare_Excelsheet = require('./javascripts/create_bare_Excelsheet');
 require('update-electron-app')();
 
-require('electron-reload')(__dirname, {
-    electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
-    hardResetMethod: 'exit'
-});
+// require('electron-reload')(__dirname, {
+//     electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+//     hardResetMethod: 'exit'
+// });
 
 let mainWindow, secondwindow, mynotify
 
