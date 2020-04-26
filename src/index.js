@@ -45,7 +45,7 @@ const createWindow = () => {
         webPreferences: {
             nodeIntegration: true
         },
-        frame: true
+        frame: false
     });
 
     // and load the index.html of the app.
