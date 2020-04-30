@@ -5,6 +5,15 @@
     ;
 }
 
+progress {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #0e455f;
+    border-radius: 17px;
+}
+
 .red {
     color: red;
 }

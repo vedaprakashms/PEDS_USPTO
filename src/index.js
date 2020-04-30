@@ -52,7 +52,7 @@ const createWindow = () => {
     mainWindow.loadFile(path.join(__dirname, 'html', 'index.html'));
 
     // Open the DevTools.
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
     mainWindow.maximize();
 
     //setapplication menu
@@ -157,5 +157,5 @@ ipcMain.on('Start_work', (e, a) => {
     //require('./javascripts/gen_excel_template');
     bare_xl_file_path = create_bare_Excelsheet.barexl();
     // bare_xl_file_path denotes the template file
-    e.reply('tmplt-notification', bare_xl_file_path);
+    //e.reply('tmplt-notification', bare_xl_file_path);
 })

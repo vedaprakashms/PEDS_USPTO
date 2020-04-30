@@ -1,8 +1,12 @@
+const xlarray = require('../javascripts/exceltoarray');
 const { clipboard, remote, ipcRenderer, shell } = require('electron');
 const { dialog } = remote;
+
 const path = require('path');
 
-//declaration of all the buttons in index.html
+var data_json = {}
+var dummy = []
+    //declaration of all the buttons in index.html
 const btn_file = document.getElementById('open_filedg');
 const btn_select = document.getElementById('select_check');
 const btngithub = document.getElementById('ved_github');
@@ -55,8 +59,18 @@ btn_execute_file.addEventListener('click', e => {
         //     title: "Place holder for execution",
         //     message: "Place holder to start execution of program\nWork in progress, the functionality will bee added soon!!!"
         // })
+    xlarray.excel2arr(path.join(document.getElementById('file_path').innerHTML))
+        .then((res) => {
+            console.log(res)
+            var dummy = res;
+        }).then(() => {
+            console.log('clicked');
+
+            console.log(dummy)
+            xlarray.data2json(dummy)
+        })
     console.log(dialog)
-    ipcRenderer.send('Start_work', 'ping to start work')
+    ipcRenderer.send('Start_work', document.getElementById('file_path').innerHTML)
 
 });
 
