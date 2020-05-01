@@ -20,12 +20,12 @@ const assiginment_data = document.getElementById('assiginment_data');
 
 var check_obj = {
     app_data: 1,
-    Trans_history: 1,
+    Trans_history: 0,
     PTA_data: 1,
-    Addr_attr: 1,
+    Addr_attr: 0,
     Contunity_data: 1,
-    foreign_priority: 1,
-    assiginment_data: 1
+    foreign_priority: 0,
+    assiginment_data: 0
 };
 
 
