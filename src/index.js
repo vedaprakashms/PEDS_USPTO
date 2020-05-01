@@ -10,8 +10,8 @@ require('electron-reload')(__dirname, {
     hardResetMethod: 'exit'
 });
 
-let mainWindow, secondwindow
-
+let mainWindow, secondwindow;
+var second_win_selection;
 //main menu template
 
 let mainMenu = Menu.buildFromTemplate(require('./javascripts/mainMenu'))
@@ -130,13 +130,14 @@ ipcMain.on('open-second-window', (e, a) => {
         modal: true
     })
     secondwindow.loadFile(path.join(__dirname, 'html', 'select.html'));
-    //secondwindow.webContents.openDevTools();
+    secondwindow.webContents.openDevTools();
 
 })
 
 ipcMain.on('close-second-window', (e, a) => {
+    second_win_selection = a;
     secondwindow.close();
-    console.log(a);
+    console.log(second_win_selection);
 })
 
 ipcMain.on('Close-main-window', (e, a) => {
