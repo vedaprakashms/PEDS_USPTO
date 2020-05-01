@@ -4,9 +4,9 @@ const { dialog } = remote;
 
 const path = require('path');
 
-var data_json = {}
-var dummy = []
-    //declaration of all the buttons in index.html
+
+
+//declaration of all the buttons in index.html
 const btn_file = document.getElementById('open_filedg');
 const btn_select = document.getElementById('select_check');
 const btngithub = document.getElementById('ved_github');
@@ -61,15 +61,15 @@ btn_execute_file.addEventListener('click', e => {
         // })
     xlarray.excel2arr(path.join(document.getElementById('file_path').innerHTML))
         .then((res) => {
-            console.log(res)
+            //console.log(res)
             var dummy = res;
         }).then(() => {
-            console.log('clicked');
+            //console.log('clicked');
 
-            console.log(dummy)
+            //console.log(dummy)
             xlarray.data2json(dummy)
         })
-    console.log(dialog)
+        //console.log(dialog)
     ipcRenderer.send('Start_work', document.getElementById('file_path').innerHTML)
 
 });

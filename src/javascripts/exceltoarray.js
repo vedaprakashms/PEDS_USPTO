@@ -16,8 +16,8 @@ payload = {
     "sort": "applId asc",
     "start": "0"
 }
-
-// module to resolve the excel column a data to a array
+var data_json = {}
+    // module to resolve the excel column a data to a array
 module.exports.excel2arr = async(path) => {
     dummy = []
     var k
@@ -33,7 +33,7 @@ module.exports.excel2arr = async(path) => {
                 k = k.replace(/[A-Za-z]/g, "");
                 k = k.replace(/[',-\/\\]/g, "");
 
-                console.log(k)
+                //console.log(k)
                 dummy.push(k)
             });
             //console.log(dummy)
@@ -66,7 +66,7 @@ module.exports.peds_fetch = async function(payload) {
         })
         .catch(console.log);
 
-    console.log(data1.data.queryResults.searchResponse.response.docs[0])
+    //console.log(data1.data.queryResults.searchResponse.response.docs[0])
     return data1.data.queryResults.searchResponse.response.docs[0]
 
 }
@@ -83,7 +83,7 @@ module.exports.data2json = async(array) => {
         console.log(num)
         await xlarray.peds_fetch(payload)
             .then(res => {
-                console.log(res)
+                //console.log(res)
                 data_json[num] = res
             })
             .catch(err => {
@@ -97,14 +97,14 @@ module.exports.data2json = async(array) => {
 
     data_jasonsting = JSON.stringify(data_json)
     fs.writeFile('abc.json', data_jasonsting, err => {
-        if (err) {
-            console.log('Error writing file', err)
-        } else {
-            console.log('Successfully wrote file')
-        }
-    })
-    console.log(data_json)
-    console.log('done')
+            if (err) {
+                console.log('Error writing file', err)
+            } else {
+                console.log('Successfully wrote file')
+            }
+        })
+        //console.log(data_json)
+        //console.log('done')
     var t1 = performance.now()
     console.log("Call to fetch application data from uspto took " + (t1 - t0) / 1000 + " seconds to complete a set of " + array.length + " applications")
 }
