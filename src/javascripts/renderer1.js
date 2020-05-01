@@ -103,6 +103,8 @@ ipcRenderer.on('file-open-msg-reply', (event, arg) => {
     document.getElementById('file_path').innerHTML = arg
 });
 
+
+
 // notification for generating the notification
 ipcRenderer.on('tmplt-notification', (event, arg) => {
     console.log(arg) // prints "pong"

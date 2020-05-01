@@ -11,7 +11,7 @@ require('electron-reload')(__dirname, {
 });
 
 let mainWindow, secondwindow;
-var second_win_selection;
+var second_win_selection, template_file_path;
 //main menu template
 
 let mainMenu = Menu.buildFromTemplate(require('./javascripts/mainMenu'))
@@ -149,10 +149,11 @@ ipcMain.on('gen_template', (e, a) => {
     console.log(a);
     // path to the excel template generation java script
     //require('./javascripts/gen_excel_template');
-    temp_path = gen_excel_template.xl_tmplate();
-    e.reply('tmplt-notification', temp_path);
+    template_file_path = gen_excel_template.xl_tmplate();
+    e.reply('tmplt-notification', template_file_path);
 })
 ipcMain.on('Start_work', (e, a) => {
+
     console.log(a);
     // path to the excel template generation java script
     //require('./javascripts/gen_excel_template');

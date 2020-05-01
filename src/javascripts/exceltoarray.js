@@ -3,7 +3,9 @@ const axios = require('axios');
 const axiosRetry = require('axios-retry');
 const performance = require('perf_hooks').performance;
 const fs = require('fs')
+const path = require('path');
 
+//progress bar
 const progressbar = document.getElementById("progress");
 
 payload = {
@@ -16,10 +18,12 @@ payload = {
     "sort": "applId asc",
     "start": "0"
 }
-var data_json = {}
-    // module to resolve the excel column a data to a array
+var data_json = {};
+var excel_path;
+// module to resolve the excel column a data to a array
 module.exports.excel2arr = async(path) => {
     dummy = []
+    excel_path = path
     var k
     var workbook = new Excel.Workbook();
     await workbook.xlsx.readFile(path)
@@ -94,9 +98,11 @@ module.exports.data2json = async(array) => {
         i++;
     }
 
+    console.log(path.dirname(excel_path))
+    console.log(path.basename(excel_path, '.xlsx'))
 
     data_jasonsting = JSON.stringify(data_json)
-    fs.writeFile('abc.json', data_jasonsting, err => {
+    fs.writeFile(path.join(path.dirname(excel_path), path.basename(excel_path, '.xlsx')) + '.json', data_jasonsting, err => {
             if (err) {
                 console.log('Error writing file', err)
             } else {
