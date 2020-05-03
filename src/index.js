@@ -55,7 +55,7 @@ const createWindow = () => {
     mainWindow.loadFile(path.join(__dirname, 'html', 'index.html'));
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
     mainWindow.maximize();
 
     //setapplication menu
@@ -128,12 +128,12 @@ ipcMain.on('open-second-window', (e, a) => {
         webPreferences: {
             nodeIntegration: true
         },
-        frame: false,
+        frame: true,
         parent: mainWindow,
         modal: true
     })
     secondwindow.loadFile(path.join(__dirname, 'html', 'select.html'));
-    secondwindow.webContents.openDevTools();
+    //secondwindow.webContents.openDevTools();
 
 })
 
