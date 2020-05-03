@@ -1,6 +1,7 @@
+const fs = require('fs');
 const xlarray = require('../javascripts/exceltoarray');
-const { clipboard, remote, ipcRenderer, shell } = require('electron');
-const { dialog } = remote;
+const create_bare_Excelsheet = require('../javascripts/create_bare_Excelsheet');
+const { clipboard, ipcRenderer, shell } = require('electron');
 
 const path = require('path');
 
@@ -53,24 +54,16 @@ btnlic.addEventListener('click', e => {
 
 // to execute the program
 btn_execute_file.addEventListener('click', e => {
-    console.log('Ping to start work')
-        // code to make a template file needs to be placed here.
-        // dialog.showMessageBoxSync({
-        //     title: "Place holder for execution",
-        //     message: "Place holder to start execution of program\nWork in progress, the functionality will bee added soon!!!"
-        // })
-    xlarray.excel2arr(path.join(document.getElementById('file_path').innerHTML))
-        .then((res) => {
-            //console.log(res)
-            var dummy = res;
-        }).then(() => {
-            //console.log('clicked');
 
-            //console.log(dummy)
-            xlarray.data2json(dummy)
-        })
-        //console.log(dialog)
-    ipcRenderer.send('Start_work', document.getElementById('file_path').innerHTML)
+    ipcRenderer.send('Start_work', 'ping to Start work');
+    // code to make a template file needs to be placed here.
+    // dialog.showMessageBoxSync({
+    //     title: "Place holder for execution",
+    //     message: "Place holder to start execution of program\nWork in progress, the functionality will bee added soon!!!"
+    // })
+
+    //console.log(dialog)
+
 
 });
 
@@ -99,8 +92,36 @@ btnclsmain.addEventListener('click', e => {
 });
 //updating the index.html file for file path.
 ipcRenderer.on('file-open-msg-reply', (event, arg) => {
-    console.log(arg) // prints "pong"
+    //console.log(arg) // prints "pong"
     document.getElementById('file_path').innerHTML = arg
+});
+
+
+ipcRenderer.on('download-start', async(event, arg) => {
+    var one
+    await xlarray.excel2arr(path.join(document.getElementById('file_path').innerHTML))
+        .then((res) => {
+            //console.log(res)
+            var dummy = res;
+        }).then(() => {
+            //console.log('clicked');
+
+            //console.log(dummy)
+            xlarray.data2json(dummy).then(e => {
+                console.log(e);
+                console.log(arg);
+                one = e;
+                console.log(one);
+                console.log('this is first msg!!')
+
+            }).then(() => {
+                console.log("this should be secons msg!!");
+                create_bare_Excelsheet.writexldata(one, arg)
+            })
+
+        });
+
+    //create_bare_Excelsheet.writexldata(one, arg)
 });
 
 

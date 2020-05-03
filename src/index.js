@@ -2,18 +2,21 @@ const { app, BrowserWindow, Menu, ipcMain, dialog, clipboard } = require('electr
 const windowStateKeeper = require('electron-window-state');
 const path = require('path');
 const gen_excel_template = require('./javascripts/gen_excel_template');
-const create_bare_Excelsheet = require('./javascripts/create_bare_Excelsheet');
 require('update-electron-app')();
-
-require('electron-reload')(__dirname, {
-    electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
-    hardResetMethod: 'exit'
-});
 
 let mainWindow, secondwindow;
 var second_win_selection, template_file_path;
-//main menu template
 
+second_win_selection = {
+    app_data: 1,
+    Trans_history: 0,
+    PTA_data: 1,
+    Addr_attr: 0,
+    Contunity_data: 1,
+    foreign_priority: 0,
+    assiginment_data: 0
+};
+//main menu template
 let mainMenu = Menu.buildFromTemplate(require('./javascripts/mainMenu'))
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -45,7 +48,7 @@ const createWindow = () => {
         webPreferences: {
             nodeIntegration: true
         },
-        frame: false
+        frame: true
     });
 
     // and load the index.html of the app.
@@ -154,10 +157,5 @@ ipcMain.on('gen_template', (e, a) => {
 })
 ipcMain.on('Start_work', (e, a) => {
 
-    console.log(a);
-    // path to the excel template generation java script
-    //require('./javascripts/gen_excel_template');
-    bare_xl_file_path = create_bare_Excelsheet.barexl();
-    // bare_xl_file_path denotes the template file
-    //e.reply('tmplt-notification', bare_xl_file_path);
+    e.reply('download-start', second_win_selection)
 })

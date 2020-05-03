@@ -84,7 +84,7 @@ module.exports.data2json = async(array) => {
     i = 1;
     for (num of array) {
         payload.searchText = 'applId:' + num;
-        console.log(num)
+        //console.log(num)
         await xlarray.peds_fetch(payload)
             .then(res => {
                 //console.log(res)
@@ -98,21 +98,25 @@ module.exports.data2json = async(array) => {
         i++;
     }
 
-    console.log(path.dirname(excel_path))
-    console.log(path.basename(excel_path, '.xlsx'))
+    //console.log(path.dirname(excel_path))
+    //console.log(path.basename(excel_path, '.xlsx'))
 
     data_jasonsting = JSON.stringify(data_json)
-    fs.writeFile(path.join(path.dirname(excel_path), path.basename(excel_path, '.xlsx')) + '.json', data_jasonsting, err => {
-            if (err) {
-                console.log('Error writing file', err)
-            } else {
-                console.log('Successfully wrote file')
-            }
-        })
+    var filenama = path.join(path.dirname(excel_path), path.basename(excel_path, '.xlsx')) + '.json'
+        //console.log(filenama)
+    fs.writeFileSync(filenama, data_jasonsting)
         //console.log(data_json)
         //console.log('done')
     var t1 = performance.now()
     console.log("Call to fetch application data from uspto took " + (t1 - t0) / 1000 + " seconds to complete a set of " + array.length + " applications")
+    return new Promise((resolve, reject) => {
+        if (filenama !== "") {
+            console.log('data written sucessful')
+            resolve(filenama);
+        } else {
+            reject('not found');
+        }
+    })
 }
 
 // module.exports.excel2arr = (path) => {
