@@ -1,4 +1,5 @@
 const app = require('electron').remote.app;
+const { ipcRenderer } = require('electron');
 const Excel = require('exceljs');
 const path = require('path');
 const fs = require('fs');
@@ -162,7 +163,7 @@ module.exports.writexldata = async(jsonFP, jsonobj) => {
     AssignmentSheet.properties.defaultRowHeight = 75;
 
     jsonfile = fs.readFileSync(jsonFP);
-    console.log(jsonfile);
+    //console.log(jsonfile);
     var obj = JSON.parse(jsonfile);
 
     for (var k in obj) {
@@ -258,7 +259,8 @@ module.exports.writexldata = async(jsonFP, jsonobj) => {
 
     workbook.commit().then(function() {
         console.log('excel file cretaed');
-
+        document.getElementById('prgresstrack').innerHTML = "Finished writing Excel file, please check the file at <br>" + options['filename']
+        ipcRenderer.send("Excel-completed", options['filename'])
     });
     var t1 = performance.now()
     console.log("Call to fetch application data from uspto took " + (t1 - t0) / 1000 + " seconds to complete a set ")

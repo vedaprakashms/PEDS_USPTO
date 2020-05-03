@@ -159,3 +159,8 @@ ipcMain.on('Start_work', (e, a) => {
 
     e.reply('download-start', second_win_selection)
 })
+
+ipcMain.on('Excel-completed', (e, a) => {
+    e.reply('tmplt-notification', a);
+
+})

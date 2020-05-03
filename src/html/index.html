@@ -49,15 +49,15 @@
             <div class="column-width-min">
                 Application/PCT #
                 <br>
-                <label class="label-fontsize">123456</label>
+                <label class="label-fontsize" id="appno">123456</label>
             </div>
             <div class="column-width-min">
                 Status Date <br>
-                <label class="label-fontsize"> mm/dd/yyyy</label>
+                <label class="label-fontsize" id="statdate"> mm/dd/yyyy</label>
             </div>
             <div class="column-width-max">
                 Status <br>
-                <label class="label-fontsize">ipsum Lorem ipsum dolor sit amet consectetur </label>
+                <label class="label-fontsize" id="status">ipsum Lorem ipsum dolor sit amet consectetur </label>
             </div>
 
         </div>
@@ -66,15 +66,15 @@
             <div class="column-width-min">
                 Publication number
                 <br>
-                <label class="label-fontsize">1234567890</label>
+                <label class="label-fontsize" id="Pubno">1234567890</label>
             </div>
             <div class="column-width-min">
                 Publication Date <br>
-                <label class="label-fontsize"> mm/dd/yyyy</label>
+                <label class="label-fontsize" id="Pubdate"> mm/dd/yyyy</label>
             </div>
             <div class="column-width-max">
                 Title <br>
-                <label class="label-fontsize">ipsum Lorem ipsum dolor sit amet consectetur </label>
+                <label class="label-fontsize" id="Title">ipsum Lorem ipsum dolor sit amet consectetur </label>
             </div>
 
         </div>
@@ -82,15 +82,15 @@
             <div class="column-width-min">
                 Patent number
                 <br>
-                <label class="label-fontsize">1234567890</label>
+                <label class="label-fontsize" id="patno">1234567890</label>
             </div>
             <div class="column-width-min">
                 Patent Date <br>
-                <label class="label-fontsize"> mm/dd/yyyy</label>
+                <label class="label-fontsize" id="patdate"> mm/dd/yyyy</label>
             </div>
             <div class="column-width-max">
                 Entity Type <br>
-                <label class="label-fontsize">ipsum Lorem ipsum dolor sit amet consectetur </label>
+                <label class="label-fontsize" id="entity">ipsum Lorem ipsum dolor sit amet consectetur </label>
             </div>
 
         </div>
@@ -98,15 +98,15 @@
             <div class="column-width-min">
                 PTA
                 <br>
-                <label class="label-fontsize">1234567890</label>
+                <label class="label-fontsize" id="pta">1234567890</label>
             </div>
             <div class="column-width-min">
                 Number of Assiginments <br>
-                <label class="label-fontsize"> mm/dd/yyyy</label>
+                <label class="label-fontsize" id="Assign"> mm/dd/yyyy</label>
             </div>
             <div class="column-width-max">
                 Inventors <br>
-                <label class="label-fontsize">ipsum Lorem ipsum dolor sit amet consectetur </label>
+                <label class="label-fontsize" id="Inv">ipsum Lorem ipsum dolor sit amet consectetur </label>
             </div>
 
         </div>
@@ -114,16 +114,24 @@
             <div class="column-width-min">
                 No. of Parent Patents
                 <br>
-                <label class="label-fontsize">1234567890</label>
+                <label class="label-fontsize" id="parentcon">1234567890</label>
             </div>
             <div class="column-width-min">
                 No. of Child Patents <br>
-                <label class="label-fontsize"> 1234567890</label>
+                <label class="label-fontsize" id="childcon"> 1234567890</label>
             </div>
             <div class="column-width-max">
                 AIA? <br>
-                <label class="label-fontsize">ipsum Lorem ipsum dolor sit amet consectetur </label>
+                <label class="label-fontsize" id="AIA">ipsum Lorem ipsum dolor sit amet consectetur </label>
             </div>
+
+        </div>
+        <div class="column-width-max">
+            <label class="label-fontsize" id="prgresstrack"></label>
+
+        </div>
+        <div class="column-width-max">
+            <label class="label-fontsize"> The Displaying may not be live due to the sheer Speed of the tool!!! Enjoy</label>
 
         </div>
 
@@ -146,6 +154,7 @@
     </footer>
     <script src="../javascripts/renderer1.js" async defer></script>
     <script src="../javascripts/create_bare_Excelsheet.js" async defer></script>
+    <script src="../javascripts/exceltoarray.js" async defer></script>
 </body>
 
 </html>
