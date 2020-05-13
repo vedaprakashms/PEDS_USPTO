@@ -2,7 +2,7 @@ const Excel = require('exceljs');
 const axios = require('axios');
 const axiosRetry = require('axios-retry');
 const performance = require('perf_hooks').performance;
-const fs = require('fs')
+const fs = require('fs');
 const path = require('path');
 
 //progress bar
@@ -84,35 +84,69 @@ module.exports.data2json = async(array) => {
     i = 1;
     for (num of array) {
         payload.searchText = 'applId:' + num;
-        console.log(num)
+        //console.log(num)
         await xlarray.peds_fetch(payload)
             .then(res => {
-                //console.log(res)
+                console.log(res)
                 data_json[num] = res
+                document.getElementById('appno').innerHTML = res['applId'];
+                document.getElementById('statdate').innerHTML = res['appStatusDate'];
+                document.getElementById('status').innerHTML = res['appStatus'];
+                document.getElementById('Pubno').innerHTML = res['appEarlyPubNumber'];
+                document.getElementById('Pubdate').innerHTML = res['appEarlyPubDate'];
+                document.getElementById('Pubdate').innerHTML = res['appEarlyPubDate'];
+                document.getElementById('Title').innerHTML = res['patentTitle'];
+                document.getElementById('patno').innerHTML = res['patentNumber'];
+                document.getElementById('patdate').innerHTML = res['patentIssueDate'];
+                document.getElementById('entity').innerHTML = res['appEntityStatus'];
+                document.getElementById('pta').innerHTML = res['totalPtoDays'];
+                if (res['assignments'] != undefined) {
+                    document.getElementById('Assign').innerHTML = res['assignments'].length;
+                } else {
+                    document.getElementById('Assign').innerHTML = '0';
+                }
+                document.getElementById('Inv').innerHTML = res['inventorName'];
+                if (res['parentContinuity'] != undefined) {
+                    document.getElementById('parentcon').innerHTML = res['parentContinuity'].length;
+                } else {
+                    document.getElementById('parentcon').innerHTML = 0;
+                }
+                if (res['childContinuity'] != undefined) {
+                    document.getElementById('childcon').innerHTML = res['childContinuity'].length;
+                } else {
+                    document.getElementById('childcon').innerHTML = 0;
+                }
+                document.getElementById('AIA').innerHTML = res['firstInventorFileFacet'];
             })
             .catch(err => {
                 console.log(err)
             })
 
         progressbar.value = "" + i + "";
+
         i++;
+        document.getElementById('prgresstrack').innerHTML = "Completed " + progressbar.value + " of " + progressbar.max;
     }
 
-    console.log(path.dirname(excel_path))
-    console.log(path.basename(excel_path, '.xlsx'))
-
+    //console.log(path.dirname(excel_path))
+    //console.log(path.basename(excel_path, '.xlsx'))
+    document.getElementById('prgresstrack').innerHTML = "Writing data to Excel file!!, please wait for a notification :)"
     data_jasonsting = JSON.stringify(data_json)
-    fs.writeFile(path.join(path.dirname(excel_path), path.basename(excel_path, '.xlsx')) + '.json', data_jasonsting, err => {
-            if (err) {
-                console.log('Error writing file', err)
-            } else {
-                console.log('Successfully wrote file')
-            }
-        })
+    var filenama = path.join(path.dirname(excel_path), path.basename(excel_path, '.xlsx')) + '.json'
+        //console.log(filenama)
+    fs.writeFileSync(filenama, data_jasonsting)
         //console.log(data_json)
         //console.log('done')
     var t1 = performance.now()
     console.log("Call to fetch application data from uspto took " + (t1 - t0) / 1000 + " seconds to complete a set of " + array.length + " applications")
+    return new Promise((resolve, reject) => {
+        if (filenama !== "") {
+            console.log('data written sucessful')
+            resolve(filenama);
+        } else {
+            reject('not found');
+        }
+    })
 }
 
 // module.exports.excel2arr = (path) => {
