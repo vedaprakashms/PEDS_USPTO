@@ -6,4 +6,4 @@ The screenshot of working tool is attached
 
 Version 2 Released
 
-Installation and working instructions on [vedaprakashms/gothub.io](https://vedaprakashms.github.io/PEDS/)
+Installation and working instructions on [vedaprakashms.github.io](https://vedaprakashms.github.io/software/USPTO_PEDS)
